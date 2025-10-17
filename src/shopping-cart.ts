@@ -9,4 +9,8 @@ export class ShoppingCart {
   addProduct(product: Product): void {
     this.products.push(product);
   }
+
+  getTotalPrice() {
+    return 0;
+  }
 }

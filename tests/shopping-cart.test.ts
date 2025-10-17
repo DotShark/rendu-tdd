@@ -33,4 +33,17 @@ describe('ShoppingCart', () => {
       expect(cart.products[1].price).toBe(300);
     });
   });
+
+  describe('getTotalPrice', () => {
+    test('should return 0 for an empty cart', () => {
+      expect(cart.getTotalPrice()).toBe(0);
+    });
+
+    test('should return the sum of all product prices', () => {
+      cart.addProduct({ name: 'Laptop', price: 1000 });
+      cart.addProduct({ name: 'Mouse', price: 50 });
+      cart.addProduct({ name: 'Keyboard', price: 150 });
+      expect(cart.getTotalPrice()).toBe(1200);
+    });
+  });
 });
