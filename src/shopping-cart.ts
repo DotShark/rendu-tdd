@@ -4,15 +4,19 @@ export interface Product {
 }
 
 export class ShoppingCart {
-  products: Product[] = [];
+  private _products: Product[] = [];
+
+  get products(): Product[] {
+    return this._products;
+  }
   
   addProduct(product: Product): void {
-    this.products.push(product);
+    this._products.push(product);
   }
 
   getTotalPrice() {
     let totalPrice = 0;
-    for (const product of this.products) totalPrice += product.price;
+    for (const product of this._products) totalPrice += product.price;
     
     if (totalPrice > 100) totalPrice *= 0.9;
     
