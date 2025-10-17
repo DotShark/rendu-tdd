@@ -71,3 +71,9 @@ Vous devez produire :
 | 2.4       | Intégration continue    |    10   |
 | **Total** |                         | **100** |
 
+---
+
+## 🔄 **Intégration CI/CD**
+
+Pour intégrer ces tests dans une pipeline CI/CD, il suffit de configurer un outil d'intégration continue (comme GitHub Actions, GitLab CI ou Jenkins) pour qu'il exécute automatiquement la commande `npm test` à chaque fois qu'un développeur pousse du code ou crée une pull request. Si les tests échouent, la pipeline rejette la modification et empêche le merge vers la branche principale. Cela garantit que seul du code validé par les tests atteint la production.
+
