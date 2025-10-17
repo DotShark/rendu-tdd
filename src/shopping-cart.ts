@@ -1,7 +1,12 @@
+export interface Product {
+  name: string;
+  price: number;
+}
+
 export class ShoppingCart {
-  products: any[] = [];
+  products: Product[] = [];
   
-  addProduct(product: any) {
+  addProduct(product: Product): void {
     this.products.push(product);
   }
 }
