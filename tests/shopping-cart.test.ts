@@ -32,6 +32,24 @@ describe('ShoppingCart', () => {
       expect(cart.products[0].price).toBe(150);
       expect(cart.products[1].price).toBe(300);
     });
+
+    test('should prevent adding products with negative prices', () => {
+      expect(() => {
+        cart.addProduct({ name: 'Invalid', price: -50 });
+      }).toThrow();
+    });
+
+    test('should prevent adding products with zero price', () => {
+      expect(() => {
+        cart.addProduct({ name: 'Free Item', price: 0 });
+      }).toThrow();
+    });
+
+    test('should prevent adding products which are not of the Product type', () => {
+      expect(() => {
+        cart.addProduct({ name: 'Invalid' } as any);
+      }).toThrow();
+    });
   });
 
   describe('getTotalPrice', () => {
@@ -50,6 +68,18 @@ describe('ShoppingCart', () => {
       cart.addProduct({ name: 'Mouse', price: 50 });
       cart.addProduct({ name: 'Keyboard', price: 150 });
       expect(cart.getTotalPrice()).toBe(1080); // 1200 * 0.9 (10% discount for carts > 100)
+    });
+
+    test('should return exact sum for a cart totaling exactly 100', () => {
+      cart.addProduct({ name: 'Item A', price: 50 });
+      cart.addProduct({ name: 'Item B', price: 50 });
+      expect(cart.getTotalPrice()).toBe(100);
+    });
+
+    test('should return exact sum for a cart totaling just over 100 without discount edge case', () => {
+      cart.addProduct({ name: 'Item A', price: 60 });
+      cart.addProduct({ name: 'Item B', price: 41 });
+      expect(cart.getTotalPrice()).toBe(90.9); // 101 * 0.9
     });
   });
 });
