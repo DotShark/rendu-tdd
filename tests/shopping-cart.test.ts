@@ -7,6 +7,10 @@ describe('ShoppingCart', () => {
     cart = new ShoppingCart();
   });
 
+  test('should be empty when initialized', () => {
+    expect(cart.products).toHaveLength(0);
+  });
+
   describe('addProduct', () => {
     test('should add a product to the cart', () => {
       cart.addProduct({ name: 'Laptop', price: 1000 });
