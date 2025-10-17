@@ -39,6 +39,12 @@ describe('ShoppingCart', () => {
       expect(cart.getTotalPrice()).toBe(0);
     });
 
+    test('should return the total price for a cart that costs less than 100', () => {
+      cart.addProduct({ name: 'Mouse', price: 25 });
+      cart.addProduct({ name: 'USB Cable', price: 15 });
+      expect(cart.getTotalPrice()).toBe(40);
+    });
+
     test('should return the sum of all product prices', () => {
       cart.addProduct({ name: 'Laptop', price: 1000 });
       cart.addProduct({ name: 'Mouse', price: 50 });
