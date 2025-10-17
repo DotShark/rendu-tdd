@@ -11,6 +11,18 @@ export class ShoppingCart {
   }
   
   addProduct(product: Product): void {
+    if (!product || typeof product !== 'object') {
+      throw new Error('Product must be a valid object');
+    }
+
+    if (typeof product.name !== 'string' || product.name === '') {
+      throw new Error('Product must have a valid name');
+    }
+
+    if (typeof product.price !== 'number' || product.price <= 0) {
+      throw new Error('Product must have a valid price greater than 0');
+    }
+
     this._products.push(product);
   }
 
